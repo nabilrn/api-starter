@@ -1,91 +1,65 @@
 # API Starter
 
-Reusable Kotlin + Spring Boot API starter for REST backends with PostgreSQL, Flyway, JWT auth, tests, coverage, optional OAuth, HMAC, field encryption, and AI coding-agent setup.
+Reusable Kotlin + Spring Boot REST API starter with PostgreSQL, Flyway, JWT auth, tests, coverage, optional OAuth, HMAC request signing, AES-GCM field encryption, and AI coding-agent setup.
 
-## Stack
+## What Is Included
 
-- Kotlin
-- Spring Boot 3
-- Gradle Kotlin DSL
-- PostgreSQL
+- Kotlin + Spring Boot 3
+- Gradle Kotlin DSL + Gradle wrapper
+- PostgreSQL + Flyway migrations
 - Spring Data JPA
-- Flyway
 - Spring Security
+- Local auth with JWT access tokens and hashed refresh-token rotation
+- User profile and admin user/role management
+- Optional Google/GitHub OAuth account-linking core
+- Optional HMAC request signing for webhook/internal API paths
+- Optional AES-GCM field encryption service for stored secrets
 - OpenAPI / Swagger
-- JUnit 5, MockK, MockMvc, Testcontainers
-- JaCoCo
+- JUnit 5, MockK, MockMvc, Testcontainers, JaCoCo
+- AI coding-agent rules for Codex, Claude, Cursor, Copilot, Windsurf, and Cline-style workflows
 
-## Local Setup
+## Start Here
 
-1. Copy `.env.example` to `.env`.
-2. Start PostgreSQL:
+If you are creating a new project from this starter:
 
-```bash
+1. Follow [Clone and start a new project](docs/clone-and-start.md).
+2. Then use [Commands](docs/commands.md) for daily development commands.
+
+If you only want to run this starter locally:
+
+```powershell
+Copy-Item .env.example .env
 docker compose up -d
+.\gradlew.bat bootRun
 ```
 
-3. Run the API:
-
-```bash
-./gradlew bootRun
-```
-
-4. Open Swagger:
+Swagger:
 
 ```txt
 http://localhost:8080/swagger-ui.html
 ```
 
-See [Commands](docs/commands.md) for server, database, migration, test, and coverage commands.
+Health:
 
-If you are creating a new project from this starter, follow [Clone and start a new project](docs/clone-and-start.md).
-
-## Test And Coverage
-
-```bash
-./gradlew test
-./gradlew jacocoTestReport
-./gradlew check
+```txt
+http://localhost:8080/api/v1/health
 ```
 
-Coverage thresholds start at 70% line coverage and 60% branch coverage.
-Use `gradlew.bat` on Windows PowerShell.
+## Common Commands
 
-## Module Roadmap
+```powershell
+.\gradlew.bat test
+.\gradlew.bat check
+.\gradlew.bat jacocoTestReport
+docker compose down
+```
 
-1. Base foundation and agent instructions
-2. Common response, errors, validation, pagination, health, and OpenAPI setup
-3. PostgreSQL schema with Flyway
-4. Local auth with JWT and refresh tokens
-5. User and role management
-6. Unit and integration tests
-7. Optional OAuth
-8. Optional HMAC request signing
-9. Optional AES-GCM field encryption
-10. AI coding-agent setup
+For the complete command list, including migration notes, see [Commands](docs/commands.md).
 
-## Implemented Foundation
+## Documentation
 
-- Standard `ApiResponse<T>` wrapper.
-- Global exception handler with validation error formatting.
-- `PageResponse<T>` pagination helper.
-- OpenAPI metadata and JWT bearer security scheme.
-- Stateless Spring Security baseline.
-- Public `/api/v1/health` endpoint.
-- Flyway schema for users, roles, refresh tokens, and OAuth accounts.
-- JPA entities and repositories for the initial auth/user model.
-- Local auth endpoints with JWT access tokens and hashed refresh-token rotation.
-- Current-user profile endpoints and admin user/role management.
-- Gradle wrapper, unit/web/security tests, and passing JaCoCo coverage gate.
-- Optional OAuth account-linking core for Google/GitHub identities.
-- Optional HMAC request signing for webhook/internal API paths.
-- Optional AES-GCM field encryption service for stored secrets.
-- AI coding-agent setup for Codex/Claude/Cursor/Copilot-style workflows.
-
-## Docs
-
-- [Commands](docs/commands.md)
 - [Clone and start a new project](docs/clone-and-start.md)
+- [Commands](docs/commands.md)
 - [Implementation plan](docs/plan.md)
 - [Database model](docs/database.md)
 - [Auth](docs/auth.md)
@@ -95,3 +69,7 @@ Use `gradlew.bat` on Windows PowerShell.
 - [HMAC request signing](docs/hmac.md)
 - [Field encryption](docs/encryption.md)
 - [AI coding-agent setup](docs/ai-agent-setup.md)
+
+## Agent Context
+
+`AGENTS.md` is the main source of truth for AI coding agents working in this repository. Update it after cloning the starter for a real project.
