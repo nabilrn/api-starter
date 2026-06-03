@@ -38,6 +38,8 @@ http://localhost:8080/swagger-ui.html
 
 See [Commands](docs/commands.md) for server, database, migration, test, and coverage commands.
 
+If you are creating a new project from this starter, follow [Clone and start a new project](docs/clone-and-start.md).
+
 ## Test And Coverage
 
 ```bash
@@ -83,6 +85,7 @@ Use `gradlew.bat` on Windows PowerShell.
 ## Docs
 
 - [Commands](docs/commands.md)
+- [Clone and start a new project](docs/clone-and-start.md)
 - [Implementation plan](docs/plan.md)
 - [Database model](docs/database.md)
 - [Auth](docs/auth.md)

@@ -67,6 +67,8 @@ Agents must not:
 
 ## When Cloning This Starter
 
+For the full flow, see [Clone and start a new project](clone-and-start.md).
+
 After cloning for a real project:
 
 1. Rename package/base namespace if needed.
