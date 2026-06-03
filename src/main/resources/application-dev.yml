@@ -1,0 +1,8 @@
+spring:
+  jpa:
+    show-sql: true
+
+logging:
+  level:
+    com.apistarter: DEBUG
+    org.springframework.security: INFO

@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+logging:
+  level:
+    com.apistarter: INFO
+    org.springframework.security: WARN

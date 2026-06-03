@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: ${APP_NAME:api-starter}
+  jackson:
+    default-property-inclusion: non_null
+  profiles:
+    active: ${APP_ENV:dev}
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:api_starter}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+
+server:
+  port: ${APP_PORT:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+app:
+  security:
+    jwt:
+      access-secret: ${JWT_ACCESS_SECRET:change-me-access-secret-minimum-32-chars}
+      refresh-secret: ${JWT_REFRESH_SECRET:change-me-refresh-secret-minimum-32-chars}
+      access-ttl-minutes: ${JWT_ACCESS_TTL_MINUTES:15}
+      refresh-ttl-days: ${JWT_REFRESH_TTL_DAYS:30}
+    hmac:
+      enabled: ${HMAC_ENABLED:false}
+      secret: ${HMAC_SECRET:}
+      max-skew-seconds: ${HMAC_MAX_SKEW_SECONDS:300}
+      protected-paths: ${HMAC_PROTECTED_PATHS:/api/v1/webhooks,/api/v1/internal}
+    encryption:
+      enabled: ${FIELD_ENCRYPTION_ENABLED:false}
+      key: ${FIELD_ENCRYPTION_KEY:}
+  oauth:
+    google:
+      enabled: ${OAUTH_GOOGLE_ENABLED:false}
+      client-id: ${OAUTH_GOOGLE_CLIENT_ID:}
+      client-secret: ${OAUTH_GOOGLE_CLIENT_SECRET:}
+    github:
+      enabled: ${OAUTH_GITHUB_ENABLED:false}
+      client-id: ${OAUTH_GITHUB_CLIENT_ID:}
+      client-secret: ${OAUTH_GITHUB_CLIENT_SECRET:}
